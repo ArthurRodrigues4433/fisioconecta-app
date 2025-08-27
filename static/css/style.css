@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-login {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+
+.img-box {
+    width: 50%;
+    height: 100%;
+    background-color: #a8c3b1;
+    padding: 20px;
+}
+
+.img-box img {
+    width: 28%;
+    display: block;
+    margin: 0 auto;
+}
+
+.img-box h1 {
+    color: #594ec0;
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.image-logo {   
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.image-logo2 {   
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+}
+
+.content-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+.content-box .form-box {
+    width: 50%;
+}
+
+.content-box .form-box .ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-box .form-box .ul li {
+    list-style: none;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 7px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.content-box .form-box .ul li:hover {
+    background: #e4e4e4;
+}
+
+.form-box .ul li img {
+    width: 40px;
+}
+
+.content-box .form-box h2 {
+    color: #32324f;
+    font-weight: 600;
+    font-size: 2em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.content-box .form-box .input-box {
+    margin-bottom: 20px;
+}
+
+.content-box .form-box .input-box input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    font-weight: 400;
+    border: none;
+    font-size: 17px;
+    color: #32324f;
+    background-color: #ecf2f7;
+    border-radius: 5px;
+}
+
+.content-box .form-box .input-box span {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #32324f;
+    font-weight: 400;
+}
+
+.content-box .form-box .input-box input::placeholder {
+    color: #a9adb6;
+}
+
+.content-box .form-box .input-box input[type=submit] {
+    background: #a8c3b1;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.content-box .form-box .input-box input[type=submit]:hover {
+    background: #18795b;
+}
+
+.content-box .form-box .remember{
+    margin-bottom: 20px;
+    color: #32324f;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-box .form-box .remember a{
+    text-decoration: none;
+    color: #a8c3b1;
+}
+.content-box .form-box .remember a:hover{
+    color: #a8c3b1;
+}
+
+.content-box .form-box .input-box p {
+    color: #32324f;
+}
+.content-box .form-box .input-box p a{
+    color: #a8c3b1;
+}
+
+.content-box .form-box .input-box p a:hover{
+    color: #a8c3b1;
+}
+.content-box .form-box h3
+{
+    color: #607d8b;
+    text-decoration: none;
+    margin: 40px 0 15px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 22px;
+}
+
+/* Animação de fade + slide */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Classe base para aplicar nos elementos que vão aparecer */
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Delays para entrada progressiva */
+.delay-1 {
+    animation-delay: 0.2s;
+}
+.delay-2 {
+    animation-delay: 0.4s;
+}
+.delay-3 {
+    animation-delay: 0.6s;
+}
+.delay-4 {
+    animation-delay: 0.8s;
+}
+.delay-5 {
+    animation-delay: 1s;
+}
+.delay-6 {
+    animation-delay: 1.2s;
+}
+.delay-7 {
+    animation-delay: 1.4s;
+}
+.delay-8 {
+    animation-delay: 1.6s;
+}
+.delay-9 {
+    animation-delay: 1.8s;
+}
+.delay-10 {
+    animation-delay: 2.0s;
+}
+.delay-11 {
+    animation-delay: 2.2s;
+}
+
+
+@media (max-width:868px) {
+    .container-login .img-box{
+        display: none;
+    }
+    .container-login .content-box{
+        width: 100%;
+    }
+    .container-login .content-box .form-box{
+        width: 100%;
+        padding: 40px;
+        background: white;
+        margin: 50px;
+    } 
+    .container-login .content-box .form-box h3{
+        margin: 30px 0 10px;
+    } 
+}
+
+@media (max-width:868px) {
+    .image-logo {
+    width: 50% ;
+    display: block;
+    margin: 0 auto;
+    }
+}
+
+@media (max-width:450px) {
+    .container-login .content-box .form-box .remember{
+        flex-wrap: wrap;
+    }
+    .container-login .content-box .form-box .remember a{
+        margin-top: 20px;
+    }
+    
+}
+
+
+

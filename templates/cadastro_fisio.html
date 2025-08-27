@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="static/css/styles.css">
+    <title>Cadastro Do Profissional</title>
+</head>
+
+<body>
+    <div class="container-login">
+        <div class="img-box fade-in delay-1">
+            <img src="static/images/FisioConecta1.png" alt="">
+            <h1>Facilitando o acesso à fisioterapia infantil especializada.</h1>
+        </div>
+        <div class="content-box fade-in delay-2">
+            <div class="form-box fade-in delay-2">
+                <img class="image-logo2 fade-in delay-2" src="static/images/FisioConecta1.png" alt="">
+                <h2>CADASTRO</h2>
+                <form action="/cadastrarFisio" method="post" enctype="multipart/form-data" class="formLogin">
+
+                    <div class="input-box fade-in delay-3">
+                        <span>Nome Completo</span>
+                        <input type="text" name="nome" placeholder="Tribuzana da Silva" id="nome">
+                    </div>
+
+                    <div class="input-box fade-in delay-3">
+                        <span>Foto de perfil</span>
+                        <input type="file" name="imagem" accept="image/*" id="imagem">
+                    </div>
+
+                    <div class="input-box fade-in delay-3">
+                        <span>Area de especialidade</span>
+                        <input type="text" name="especialidade" placeholder="Tribuzana da Silva" id="especialidade">
+                    </div>
+
+                    <div class="input-box fade-in delay-4">
+                        <span>Endereço Completo</span>
+                        <input type="text" name="cidade" placeholder="rua raimundo de sá, n296, petrolina pernambuco" id="cidade">
+
+                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+                    </div>
+
+                    <div class="input-box fade-in delay-5">
+                        <span>Telefone com DDD</span>
+                        <input type="text" name="telefone" placeholder="(87) 9 9999-9999" id="telefone">
+                    </div>
+
+                    <div class="input-box fade-in delay-6">
+                        <span>Data de Nascimento</span>
+                        <input type="date" name="dataNascimento" id="dataNascimento">
+                    </div>
+
+                    <div class="input-box fade-in delay-7">
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="@mail.com" id="email">
+                    </div>
+
+                    <div class="input-box fade-in delay-8">
+                        <span>CREFITO (só numeros e o digito final)</span>
+                        <input type="text" name="crefito" placeholder="8 100257-F" id="crefito">
+                    </div>
+
+                    <div class="input-box fade-in delay-9">
+                        <span>Senha</span>
+                        <input type="password" name="senha" placeholder="Senha" id="senha">
+                    </div>
+
+                    <div class="input-box fade-in delay-10">
+                        <input type="submit" value="Enviar" class="btn">
+                    </div>
+
+                </form>
+                <h3 class="ul fade-in delay-11">Logar Com</h3>
+                <ul class="ul fade-in delay-11">
+                    <li><img src="static/images/747.png"></li>
+                    <li><img src="static/images/Google.png"></li>
+                    <li><img src="static/images/Facebook.png"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar/ocultar senha com duplo clique
+        const senhaInput = document.getElementById('senha');
+        senhaInput.addEventListener('dblclick', () => {
+            senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
+        });
+
+        // Validação do formulário
+        document.querySelector('.formLogin').addEventListener('submit', function (e) {
+            const nome = document.getElementById('nome').value.trim();
+            const cidade = document.getElementById('cidade').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const dataNascimento = document.getElementById('dataNascimento').value;
+            const email = document.getElementById('email').value.trim();
+            const crefito = document.getElementById('crefito').value.trim();
+            const senha = document.getElementById('senha').value;
+
+            // Regex para validações
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const telefoneRegex = /^\(\d{2}\) \d\d{4}\d{4}$/;
+            const crefitoRegex = /^\d{7}-[A-Z]$/i;
+
+            // Verifica campos vazios
+            if (!nome || !cidade || !telefone || !dataNascimento || !email || !crefito || !senha) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                e.preventDefault();
+                return;
+            }
+
+            // Valida e-mail
+            if (!emailRegex.test(email)) {
+                alert('Email inválido. Exemplo válido: exemplo@email.com');
+                e.preventDefault();
+                return;
+            }
+
+            // Valida telefone
+            if (!telefoneRegex.test(telefone)) {
+                alert('Telefone inválido. Use o formato (99) 9 99999999');
+                e.preventDefault();
+                return;
+            }
+
+            // Valida CREFITO
+            if (!crefitoRegex.test(crefito)) {
+                alert('CREFITO inválido. Use o formato 8100257-F');
+                e.preventDefault();
+                return;
+            }
+
+            // Confirmação final
+            const confirmar = confirm('Deseja realmente enviar o cadastro?');
+            if (!confirmar) {
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const enderecoInput = document.getElementById("cidade");
+        const latitudeInput = document.getElementById("latitude");
+        const longitudeInput = document.getElementById("longitude");
+
+            enderecoInput.addEventListener("blur", function () {
+                const endereco = enderecoInput.value;
+
+                if (endereco.length > 5) {
+                    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(endereco)}`;
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data && data.length > 0) {
+                                latitudeInput.value = data[0].lat;
+                                longitudeInput.value = data[0].lon;
+                            } else {
+                                alert("Endereço não encontrado. Tente ser mais específico.");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Erro ao buscar geolocalização:", error);
+                            alert("Erro ao buscar geolocalização.");
+                        });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
