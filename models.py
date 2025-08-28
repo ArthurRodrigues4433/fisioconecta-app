@@ -80,30 +80,3 @@ class Fisioterapeuta(Base):
         self.estado = estado
         self.status = status
         self.admin = admin
-
-
-
-# ==============================
-# Cards (anúncios de serviços)
-# ==============================
-class Card(Base):
-    __tablename__ = "cards"  # Nome da tabela no banco
-
-    # Colunas da tabela
-    id = Column(Integer, primary_key=True, autoincrement=True)          # ID único
-    foto = Column(String(200), nullable=True)                           # Foto no card
-    preco = Column(Float, nullable=False)                               # Preço do atendimento
-    especialidade = Column(String(100), nullable=False)                 # Especialidade do serviço
-    status = Column(String(50), default="Disponível")                   # Status do card
-
-    # Relacionamento: cada Card pertence a um fisioterapeuta
-    fisioterapeuta_id = Column(Integer, ForeignKey("fisioterapeutas.id"), nullable=False)
-    fisioterapeuta = relationship("Fisioterapeuta", back_populates="cards")
-
-    # Construtor para criar um card
-    def __init__(self, foto, preco, especialidade, status, fisioterapeuta_id):
-        self.foto = foto
-        self.preco = preco
-        self.especialidade = especialidade
-        self.status = status
-        self.fisioterapeuta_id = fisioterapeuta_id
