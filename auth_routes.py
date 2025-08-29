@@ -6,6 +6,8 @@ from dependencies import pegar_sessao
 from main import bcrypt_context
 from schemas import UsuarioSchema, LoginSchema, FisioterapeutaSchema
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
+from fastapi.responses import JSONResponse
 
 # Cria o roteador de autenticação com prefixo /auth
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
@@ -38,6 +40,16 @@ async def home():
 @auth_router.get("/criar_fisio")
 async def criar_fisio():
 
+    return 
+
+@auth_router.get("/criar_usuario")
+async def criar_usuario():
+
+    return 
+
+@auth_router.get("/dashboard_usuario")
+async def dashboard_usuario():
+    
     return 
 
 # -------------------------
@@ -74,14 +86,17 @@ async def criar_conta(usuario_schema: UsuarioSchema, session = Depends(pegar_ses
 # Criar conta de FISIOTERAPEUTA
 # -------------------------
 @auth_router.post("/criar_conta_fisio")
-async def criar_conta_fisio(fisioterapeuta_schema: FisioterapeutaSchema,session = Depends(pegar_sessao)  # injeta a sessão do banco automaticamente
-):
-    # Verifica se já existe fisioterapeuta com esse email
-    fisioterapeuta = session.query(Fisioterapeuta).filter(Fisioterapeuta.email == fisioterapeuta_schema.email).first()  # type: ignore
-    if fisioterapeuta:
-        # Caso exista, lança erro HTTP 400
-        raise HTTPException(status_code=400, detail="Email ja existe!")
-    else:
+async def criar_conta_fisio(fisioterapeuta_schema: FisioterapeutaSchema,
+                             session = Depends(pegar_sessao)):
+    try:
+        # Verifica se já existe fisioterapeuta com esse email
+        fisioterapeuta = session.query(Fisioterapeuta).filter(
+            Fisioterapeuta.email == fisioterapeuta_schema.email  # type: ignore
+        ).first()
+
+        if fisioterapeuta:
+            return JSONResponse(status_code=400, content={"detail": "Email já existe!"})
+
         # Criptografa a senha
         senha_criptografada = bcrypt_context.hash(fisioterapeuta_schema.senha)
 
@@ -95,13 +110,27 @@ async def criar_conta_fisio(fisioterapeuta_schema: FisioterapeutaSchema,session 
             endereco=fisioterapeuta_schema.endereco,
             estado=fisioterapeuta_schema.estado,
             crefito=fisioterapeuta_schema.crefito,
-            senha=senha_criptografada
+            senha=senha_criptografada,
+            status=fisioterapeuta_schema.status if fisioterapeuta_schema.status is not None else True,
+            admin=fisioterapeuta_schema.admin if fisioterapeuta_schema.admin is not None else False
         )
+
         # Salva no banco
         session.add(novo_fisioterapeuta)
         session.commit()
 
-        return {"mensagem": f"Fisioterapeuta cadastrado com sucesso {fisioterapeuta_schema.email}!"}
+        return JSONResponse(
+            status_code=200,
+            content={"mensagem": f"Fisioterapeuta cadastrado com sucesso {fisioterapeuta_schema.email}!"}
+        )
+
+    except IntegrityError:
+        session.rollback()
+        return JSONResponse(status_code=400, content={"detail": "Email ou CREFITO já cadastrados!"})
+
+    except Exception as e:
+        session.rollback()
+        return JSONResponse(status_code=500, content={"detail": f"Erro interno: {str(e)}"})
 
 
 # -------------------------

@@ -17,3 +17,14 @@ async def read_root(request: Request):
 async def read_rooot(request: Request):
     
     return templates.TemplateResponse("cadastro_fisio.html", {"request": request})
+
+@frontend_router.get("/criar_usuario")
+async def read_rot(request: Request):
+    
+    return templates.TemplateResponse("cadastro_usuario.html", {"request": request})
+
+@frontend_router.get("/dashboard_usuario")
+async def read_rote(request: Request):
+    
+    return templates.TemplateResponse("dashboard_usuario.html", {"request": request})
+

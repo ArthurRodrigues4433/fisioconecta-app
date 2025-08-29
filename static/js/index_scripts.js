@@ -1,4 +1,3 @@
-
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault(); // evita reload da página
 
@@ -25,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 
             // Redireciona o usuário para outra página após login
             setTimeout(() => {
-                window.location.href = "/dashboard"; // ajuste para a rota que você tiver
+                window.location.href = "/dashboard_usuario"; // ajuste para a rota que você tiver
             }, 1000);
 
         } else {
@@ -42,7 +41,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
 // botão "registrar usuário"
     document.getElementById("btnRegistrar").addEventListener("click", (e) => {
         e.preventDefault(); // evita comportamento padrão do <a>
-        window.location.href = "http://127.0.0.1:8000/auth/criar_conta"; // ajuste para a rota real do seu backend
+        window.location.href = "http://127.0.0.1:8000/criar_usuario"; // ajuste para a rota real do seu backend
     });
 
     // botão "registrar fisioterapeuta"

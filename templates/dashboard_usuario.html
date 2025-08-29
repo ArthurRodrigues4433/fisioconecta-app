@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Fisio</title>
+    <link rel="stylesheet" href="static/css/deashboard_usuario.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Dashboard</h2>
+            <ul>
+                <li>Fisioterapeutas</li>
+                <li>Documentos</li>
+                <li>Histórico</li>
+                <li>Análise</li>
+                <li>Horários</li>
+                <li>Autenticação</li>
+                <li>Configuração</li>
+                <li>Ajuda</li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Search and profile -->
+            <div class="top-bar">
+                <input type="text" placeholder="Pesquisar ?">
+                <div class="profile" id="profileBtn">
+                    <img src="https://via.placeholder.com/40" alt="User">
+                </div>
+                <div class="profile-menu" id="profileMenu">
+                    <div class="profile-info">
+                        <img src="https://via.placeholder.com/40" alt="User">
+                        <span>Peter Griffin</span>
+                        <button>Editar Perfil</button>
+                    </div>
+                    <ul>
+                        <li>Configurações</li>
+                        <li>Notificação</li>
+                        <li>Perfil</li>
+                        <li>Sistema</li>
+                        <li>Ajuda</li>
+                        <li>Feedback</li>
+                        <li class="logout">Log Out</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cards + Map -->
+            <div class="content-area">
+                <div class="cards" id="cardsContainer">
+                    <!-- Cards vão ser inseridos via JS -->
+                </div>
+                <div id="map">
+                    <!-- Aqui você pode inserir um mapa do Leaflet ou outro -->
+                    <p>Mapa Placeholder</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

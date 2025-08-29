@@ -1,26 +1,24 @@
-document.getElementById("LoginForm").addEventListener("submit", async function (e) {
-    e.preventDefault(); // evita reload da página
+document.getElementById("FisioForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
     const data = {
-            nome: document.getElementById("nome").value,
-            crefito: document.getElementById("crefito").value,
-            email: document.getElementById("email").value,
-            senha: document.getElementById("senha").value,
-            telefone: document.getElementById("telefone").value,
-            especialidade: document.getElementById("especialidade").value,
-            cidade: document.getElementById("cidade").value,
-            endereco: document.getElementById("endereco").value,
-            estado: document.getElementById("estado").value,
-            status: true,
-            admin: false
-        };
+        email: document.getElementById("email").value,
+        nome: document.getElementById("nome").value,
+        especialidade: document.getElementById("especialidade").value,
+        telefone: document.getElementById("telefone").value,
+        cidade: document.getElementById("cidade").value,
+        endereco: document.getElementById("endereco").value,
+        estado: document.getElementById("estado").value,
+        crefito: document.getElementById("crefito").value,
+        senha: document.getElementById("senha").value,
+        status: true,
+        admin: false
+    };
 
     try {
         const response = await fetch("http://127.0.0.1:8000/auth/criar_conta_fisio", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
         });
 
@@ -29,12 +27,7 @@ document.getElementById("LoginForm").addEventListener("submit", async function (
         if (response.ok) {
             document.getElementById("resposta").style.color = "green";
             document.getElementById("resposta").innerText = "✅ Cadastro realizado com sucesso!";
-            
-            localStorage.setItem("token", result.access_token);
-
-            setTimeout(() => {
-                window.location.href = "/";
-            }, 1000);
+            setTimeout(() => { window.location.href = "/"; }, 1000);
         } else {
             document.getElementById("resposta").style.color = "red";
             document.getElementById("resposta").innerText = result.detail;

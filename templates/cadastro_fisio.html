@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link CSS -->
     <link rel="stylesheet" href="/static/css/style.css">
     <title>Cadastro Do Profissional</title>
 </head>
-
 <body>
     <div class="container-login">
         <div class="img-box fade-in delay-1">
-            <img src="static/images/FisioConecta1.png" alt="">
+            <img src="/static/images/FisioConecta1.png" alt="">
             <h1>Facilitando o acesso à fisioterapia infantil especializada.</h1>
         </div>
+
         <div class="content-box fade-in delay-2">
             <div class="form-box fade-in delay-2">
-                <img class="image-logo2 fade-in delay-2" src="static/images/FisioConecta1.png" alt="">
+                <img class="image-logo2 fade-in delay-2" src="/static/images/FisioConecta1.png" alt="">
                 <h2>CADASTRO</h2>
 
-                <form id="LoginForm" class="formLogin">
+                <form id="FisioForm" class="formLogin">
                     <div class="input-box">
-                        <span>Foto</span>
-                        <input type="" id="email" name="email" placeholder="@mail.com" required>
+                        <span>Email</span>
+                        <input type="email" id="email" name="email" placeholder="@mail.com" required>
                     </div>
 
                     <div class="input-box">
@@ -33,8 +31,8 @@
                     </div>
 
                     <div class="input-box">
-                        <span>Email</span>
-                        <input type="email" id="email" name="email" placeholder="@mail.com" required>
+                        <span>Especialidade</span>
+                        <input type="text" id="especialidade" name="especialidade" placeholder="Ex: Pediatria" required>
                     </div>
 
                     <div class="input-box">
@@ -58,6 +56,11 @@
                     </div>
 
                     <div class="input-box">
+                        <span>CREFITO</span>
+                        <input type="text" id="crefito" name="crefito" placeholder="Ex: 123456F" required>
+                    </div>
+
+                    <div class="input-box">
                         <span>Senha</span>
                         <input type="password" id="senha" name="senha" placeholder="password" required>
                     </div>
@@ -66,22 +69,11 @@
                         <input type="submit" value="Cadastrar">
                     </div>
 
-                    <!-- mensagem de resposta -->
                     <p id="resposta" style="margin-top:10px; color:red;"></p>
                 </form>
-
-
-                <h3 class="ul fade-in delay-11">Logar Com</h3>
-                <ul class="ul fade-in delay-11">
-                    <li><img src="static/images/747.png"></li>
-                    <li><img src="static/images/Google.png"></li>
-                    <li><img src="static/images/Facebook.png"></li>
-                </ul>
             </div>
         </div>
     </div>
-
-    <script src="/static/js/fisio_script.js"></script>
-    
+    <script src="/static/js/fisio_scripts.js"></script>
 </body>
 </html>
