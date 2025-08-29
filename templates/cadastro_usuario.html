@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="static/css/styles.css">
+    <title>Tela De Login Responsiva</title>
+</head>
+
+<body>
+    <div class="container-login fade-in delay-1">
+        <div class="img-box">
+            <img src="static/images/FisioConecta1.png" alt="">
+            <h1>Facilitando o acesso à fisioterapia infantil especializada.</h1>
+        </div>
+        <div class="content-box fade-in delay-2">
+            <div class="form-box">
+                <img class="image-logo fade-in delay-3" src="static/images/FisioConecta1.png" alt="">
+                <h2>CADASTRO</h2>
+
+                <form enctype="multipart/form-data" method="post" class="formLogin">
+
+                    <div class="input-box fade-in delay-3">
+                        <span>Nome Completo</span>
+                        <input type="text" name="nome" placeholder="Tribuzana da Silva" id="nome">
+                    </div>
+
+                    <div class="input-box fade-in delay-4">
+                        <span>Cidade e Estado</span>
+                        <input type="text" name="rua" placeholder="Nome da rua" id="rua">
+                        <span></span>                    
+                        <input type="text" name="numero" placeholder="Numero da casa" id="numero">
+                        <span></span>
+                        <input type="text" name="cidade" placeholder="Cidade" id="cidade">
+                        <span></span>
+                        <input type="text" name="estado" placeholder="Estado" id="estado">
+                    </div>
+
+                    <div class="input-box fade-in delay-3">
+                        <span>Foto de perfil</span>
+                        <input type="file" name="imagem" accept="image/*" id="imagem">
+                    </div>
+
+                    <div class="input-box fade-in delay-5">
+                        <span>Telefone com DDD</span>
+                        <input type="text" name="telefone" placeholder="(87) 9 9999-9999" id="telefone">
+                    </div>
+
+                    <div class="input-box fade-in delay-6">
+                        <span>Data de Nascimento</span>
+                        <input type="date" name="dataNascimento" id="dataNascimento">
+                    </div>
+
+                    <div class="input-box fade-in delay-7">
+                        <span>Email</span>
+                        <input type="email" name="email" placeholder="@mail.com" id="email">
+                    </div>
+
+                    <div class="input-box fade-in delay-8">
+                        <span>Senha</span>
+                        <input type="password" name="senha" placeholder="Senha" id="senha">
+                    </div>
+
+                    <div class="input-box fade-in delay-9">
+                        <input type="submit" value="Enviar" class="btn">
+                    </div>
+
+                </form>
+                <h3 class="fade-in delay-11">Logar Com</h3>
+                <ul class="ul fade-in delay-11">
+                    <li><img src="static/images/747.png"></li>
+                    <li><img src="static/images/Google.png"></li>
+                    <li><img src="static/images/Facebook.png"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/usuario_script.js"></script>
+</body>
+
+</html>

@@ -64,9 +64,6 @@ class Fisioterapeuta(Base):
     status = Column(Boolean, default=True)                              # Ativo/inativo
     admin = Column(Boolean, default=False)                              # Se é administrador
 
-    # Relacionamento reverso: um fisioterapeuta pode ter vários cards
-    cards = relationship("Card", back_populates="fisioterapeuta")
-
     # Construtor para facilitar a criação de fisioterapeutas
     def __init__(self, nome, crefito, email, senha, telefone, especialidade, cidade, endereco, estado, status=True, admin=False):
         self.nome = nome

@@ -1,13 +1,28 @@
 # Importações necessárias do FastAPI e SQLAlchemy
-from fastapi  import APIRouter, Depends, HTTPException
+from fastapi  import APIRouter, Depends, HTTPException, File, Form, UploadFile
+from fastapi.security import OAuth2PasswordRequestForm
 from models import Usuario, Fisioterapeuta
 from dependencies import pegar_sessao
 from main import bcrypt_context
-from schemas import UsuarioSchema, FisioterapeutaSchema
+from schemas import UsuarioSchema, LoginSchema, FisioterapeutaSchema
 from sqlalchemy.orm import Session
 
 # Cria o roteador de autenticação com prefixo /auth
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
+
+
+def criar_token(id_usuario):
+    token = f"flkjsdgkjsdglks{id_usuario}"
+    return
+
+
+def autenticar_usuario(email, senha, session):
+    usuario = session.query(Usuario).filter(Usuario.email == email).first() # type: ignore
+    if not usuario:
+        return False
+    elif not bcrypt_context.verify(senha, usuario.senha):
+        return False
+    return usuario
 
 
 # -------------------------
@@ -20,6 +35,10 @@ async def home():
     """
     return {"mensagem": "Voce acessou a rota padrão de autenticação", "autenticado": False}
 
+@auth_router.get("/criar_fisio")
+async def criar_fisio():
+
+    return 
 
 # -------------------------
 # Criar conta de USUÁRIO
@@ -50,7 +69,6 @@ async def criar_conta(usuario_schema: UsuarioSchema, session = Depends(pegar_ses
         session.commit()
 
         return {"mensagem": f"Usuario criado com sucesso! {usuario_schema.email}"}
-    
 
 # -------------------------
 # Criar conta de FISIOTERAPEUTA
@@ -84,3 +102,20 @@ async def criar_conta_fisio(fisioterapeuta_schema: FisioterapeutaSchema,session 
         session.commit()
 
         return {"mensagem": f"Fisioterapeuta cadastrado com sucesso {fisioterapeuta_schema.email}!"}
+
+
+# -------------------------
+# Criar conta de LOGIN
+# -------------------------
+
+@auth_router.post("/login")
+async def login(login_schema: LoginSchema, session: Session = Depends(pegar_sessao)):
+    usuario = autenticar_usuario(login_schema.email, login_schema.senha, session)
+    if not usuario:
+        raise HTTPException(status_code=400, detail="Usuario não encontrado ou credencias invalida")
+    else:
+        access_token = criar_token(usuario.id)
+        return {
+            "access_token": access_token,
+            "token_type": "Bearer"
+            }
